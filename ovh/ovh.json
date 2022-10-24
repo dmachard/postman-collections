@@ -1,0 +1,391 @@
+{
+	"info": {
+		"_postman_id": "289264b7-6d8b-4cc2-b4ec-269bf2af1d70",
+		"name": "OVH API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Create Application Key/Secret",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.ovh.com/auth/api/createApp",
+							"protocol": "https",
+							"host": [
+								"www",
+								"ovh",
+								"com"
+							],
+							"path": [
+								"auth",
+								"api",
+								"createApp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Consumer Key",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Ovh-Application",
+								"value": "{{ak}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"accessRules\":[\n    {\"method\":\"GET\",\"path\":\"/*\"},\n    {\"method\":\"POST\",\"path\":\"/*\"},\n    {\"method\":\"DELETE\",\"path\":\"/*\"},\n    {\"method\":\"PUT\",\"path\":\"/*\"}]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{api_url}}/{{api_version}}/auth/credential",
+							"protocol": "https",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"{{api_version}}",
+								"auth",
+								"credential"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Applications",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Ovh-Application",
+								"value": "{{ak}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Consumer",
+								"value": "{{ck}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Signature",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Timestamp",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{api_url}}/{{api_version}}/me/api/application",
+							"protocol": "https",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"{{api_version}}",
+								"me",
+								"api",
+								"application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get App Detail",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Ovh-Application",
+								"value": "{{ak}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Consumer",
+								"value": "{{ck}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Signature",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Timestamp",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{api_url}}/{{api_version}}/me/api/application/{{appId}}",
+							"protocol": "https",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"{{api_version}}",
+								"me",
+								"api",
+								"application",
+								"{{appId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete App",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Ovh-Application",
+								"value": "{{ak}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Consumer",
+								"value": "{{ck}}",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Signature",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "X-Ovh-Timestamp",
+								"value": "",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://{{api_url}}/{{api_version}}/me/api/application/{{appId}}",
+							"protocol": "https",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"{{api_version}}",
+								"me",
+								"api",
+								"application",
+								"{{appId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DNS",
+			"item": [
+				{
+					"name": "List all zones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{api_url}}/{{api_version}}/domain/zone",
+							"protocol": "https",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"{{api_version}}",
+								"domain",
+								"zone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get zone detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{api_url}}/{{api_version}}/domain/zone",
+							"protocol": "https",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"{{api_version}}",
+								"domain",
+								"zone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all records ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{api_url}}/{{api_version}}/domain/zone/{{zoneName}}/record",
+							"protocol": "https",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"{{api_version}}",
+								"domain",
+								"zone",
+								"{{zoneName}}",
+								"record"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// get the request method and body content",
+					"var body = pm.request.body",
+					"var method = pm.request.method",
+					"",
+					"// generate current timetamp in seconds",
+					"var ts = Math.floor(Date.now() / 1000)",
+					"",
+					"// get request url with replaced variable",
+					"var url = pm.variables.replaceIn(pm.request.url)",
+					"",
+					"// get application key, application secret and consumer key from variables",
+					"var ak = pm.collectionVariables.get(\"ak\")",
+					"var as = pm.collectionVariables.get(\"as\")",
+					"var ck = pm.collectionVariables.get(\"ck\")",
+					"",
+					"// compute the hash",
+					"var data4hash = `${as}+${ck}+${method}+${url}+${body}+${ts}`",
+					"var hash = CryptoJS.SHA1(data4hash).toString()",
+					"var sig = \"$1$\" + hash",
+					"",
+					"// add headers",
+					"pm.request.headers.add(`X-Ovh-Application: ${ak}`)",
+					"pm.request.headers.add(`X-Ovh-Consumer: ${ck}`)",
+					"pm.request.headers.add(`X-Ovh-Signature: ${sig}`)",
+					"pm.request.headers.add(`X-Ovh-Timestamp: ${ts}`)"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "api.ovh.com",
+			"type": "default"
+		},
+		{
+			"key": "api_version",
+			"value": "1.0",
+			"type": "default"
+		},
+		{
+			"key": "ak",
+			"value": "xxxxxxxxxxxxxxxxxxxxxxxx",
+			"type": "default"
+		},
+		{
+			"key": "as",
+			"value": "xxxxxxxxxxxxxxxxxxxxxxxx",
+			"type": "default"
+		},
+		{
+			"key": "ck",
+			"value": "xxxxxxxxxxxxxxxxxxxxxxxx",
+			"type": "default"
+		},
+		{
+			"key": "appId",
+			"value": "111111"
+		},
+		{
+			"key": "zoneName",
+			"value": "myzone.com",
+			"type": "default"
+		}
+	]
+}
